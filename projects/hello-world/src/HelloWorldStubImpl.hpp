@@ -10,11 +10,14 @@
 
 class HelloWorldStubImpl : public v1_0::commonapi::HelloWorldStubDefault
 {
-    using CLOCK = std::chrono::system_clock;
-
   public:
     HelloWorldStubImpl() = default;
     virtual ~HelloWorldStubImpl() = default;
+
+    virtual auto sayHello(
+        const std::shared_ptr<CommonAPI::ClientId> _client,
+        std::string _name,
+        sayHelloReply_t _return) -> void;
 };
 
 #endif /* end of include guard: HWSTUBIMPL_HPP_PN3SIJWB */

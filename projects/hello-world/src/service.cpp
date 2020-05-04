@@ -6,8 +6,7 @@
 
 #include <CommonAPI/CommonAPI.hpp>
 
-#include "v1/commonapi/HelloWorldStubDefault.hpp"
-// #include "HelloWorldStubImpl.hpp"
+#include "HelloWorldStubImpl.hpp"
 
 #define STR_EXPAND(x) #x
 #define STR(y) STR_EXPAND(y)
@@ -17,7 +16,7 @@ auto main(int const argc, char *argv[]) -> int
     std::cout << "Starting " << STR(CAPI_TRANSPORT) << " Hello World Service\n";
 
     auto runtime = CommonAPI::Runtime::get();
-    auto service = std::make_shared<v1_0::commonapi::HelloWorldStubDefault>();
+    auto service = std::make_shared<HelloWorldStubImpl>();
     if (runtime->registerService("local", "Hello_World", service))
     {
         std::cout << "Hello_World service has been registered" << std::endl;

@@ -11,7 +11,6 @@
 #define STR_EXPAND(x) #x
 #define STR(y) STR_EXPAND(y)
 
-
 auto main() -> int
 {
     auto const polling_interval = std::chrono::milliseconds{200};
@@ -29,13 +28,12 @@ auto main() -> int
 
     // Listen for when the service event changes.
     auto const subscription_status = proxy->getProxyStatusEvent().subscribe(
-        [&](const CommonAPI::AvailabilityStatus &availabilityStatus) {
-            std::cout
-                << "$$ proxy AvailabilityStatus: "
-                << (CommonAPI::AvailabilityStatus::AVAILABLE == availabilityStatus ? " " : "NOT ")
-                << "AVAILABLE\n";
-        }
-    );
+        [&](const CommonAPI::AvailabilityStatus& availabilityStatus) {
+            std::cout << "$$ proxy AvailabilityStatus: "
+                      << (CommonAPI::AvailabilityStatus::AVAILABLE == availabilityStatus ? " "
+                                                                                         : "NOT ")
+                      << "AVAILABLE\n";
+        });
 
     // Wait for the proxy to be available
     while (!proxy->isAvailable())
@@ -43,15 +41,23 @@ auto main() -> int
     std::cout << "$ Proxy available..." << std::endl;
 
     bool continue_run = true;
-    auto subscription_shutdown = proxy->getShutdownEvent().subscribe([&continue_run]()
-    {
+    auto subscription_shutdown = proxy->getShutdownEvent().subscribe([&continue_run]() {
         std::cout << "Received shutdown signal from service\n";
         continue_run = false;
     });
 
     while (continue_run)
     {
-        std::this_thread::sleep_for(polling_interval);
+        std::string cin_str;
+        std::cin >> cin_str;
+
+        if (cin_str == "Q")
+            break;
+
+        auto ret_future = proxy->sayHelloAsync(
+            cin_str, [](CommonAPI::CallStatus const& _call_status, std::string const& message) {
+                std::cout << "Hello " << message << "\n";
+            });
     }
 
     std::cout << "Shutting down\n";
