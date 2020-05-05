@@ -17,7 +17,7 @@ Run this on a system that already has (see `setup/install-capicxx_core_runtime-c
 - capicxx-core-tools
 - patched dbus
 
-Then, install [capicxx-core-tools](https://github.com/GENIVI/capicxx-core-tools) with maven.
+Then, install [capicxx-core-tools](https://github.com/GENIVI/capicxx-core-tools) with maven.  The commands in here assume that you clone these repos into `${HOME}/workspace`
 
 # Build
 
@@ -33,6 +33,7 @@ cmake ..                             \
   -DCMAKE_BUILD_TYPE=Debug           \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=On \
   -DCAPI_GEN=${HOME}/workspace/capicxx-core-tools/org.genivi.commonapi.core.cli.product/target/products/org.genivi.commonapi.core.cli.product/linux/gtk/x86_64/commonapi-generator-linux-x86_64 \
+  -DDBus_GEN=${HOME}/workspace/capicxx-dbus-tools/org.genivi.commonapi.dbus.cli.product/target/products/org.genivi.commonapi.dbus.cli.product/linux/gtk/x86_64/commonapi-dbus-generator-linux-x86_64
 cmake --build .
 ```
 
