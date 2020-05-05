@@ -29,7 +29,7 @@ git clone//github.com/kheaactua/capicxx-dbus-example.git
 cd capicxx-dbus-example.git
 mkdir bld
 cd bld
-cmake .                              \
+cmake ..                             \
   -DCMAKE_BUILD_TYPE=Debug           \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=On \
 cmake --build .
