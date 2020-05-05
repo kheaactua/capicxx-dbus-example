@@ -40,11 +40,11 @@ wget -O "${tmp}/dbus-${VERSION}.tar.gz"                              \
 
 echo "Building common-api-dbus-runtime"
 export PKG_CONFIG_PATH="${install_dir}/lib/pkgconfig:$PKG_CONFIG_PATH"
-cd "${dbus_dir}"                                                                             \
-  && mkdir build                                                                             \
-  && cd build                                                                                \
-  && cmake -D USE_INSTALLED_COMMONAPI=ON -DCMAKE_INSTALL_PREFIX=${install_dir} "${dbus_dir}" \
-  && make                                                                                    \
+cd "${dbus_dir}"                                                                              \
+  && mkdir build                                                                              \
+  && cd build                                                                                 \
+  && cmake -DUSE_INSTALLED_COMMONAPI=ON -DCMAKE_INSTALL_PREFIX="${install_dir}" "${dbus_dir}" \
+  && make                                                                                     \
   && make install
 
 # vim: ts=2 sw=2 sts=0 expandtab ff=unix :

@@ -17,7 +17,7 @@ Run this on a system that already has (see `setup/install-capicxx_core_runtime-c
 - capicxx-core-tools
 - patched dbus
 
-Then, install [capicxx-core-tools](https://github.com/GENIVI/capicxx-core-tools) with maven.
+Then, install [capicxx-core-tools](https://github.com/GENIVI/capicxx-core-tools) and [capicxx-dbus-tools](https://github.com/GENIVI/capicxx-dbus-tools) with maven.
 
 # Build
 
