@@ -22,7 +22,7 @@ git clone https://github.com/GENIVI/capicxx-dbus-runtime.git "${dbus_dir}"
 patch_files=$(echo ${dbus_dir}/src/dbus-patches/*.patch)
 tmp="$(mktemp -d)"
 
-apt remove dbus
+apt remove dbus -qy
 wget -O "${tmp}/dbus-${VERSION}.tar.gz"                              \
   "http://dbus.freedesktop.org/releases/dbus/dbus-${VERSION}.tar.gz" \
   && tar -xzf "${tmp}/dbus-${VERSION}.tar.gz" -C "${source_dir}"     \
