@@ -8,7 +8,7 @@ Simply CommonAPI example with DBus.  Written as a starter project to help new pe
 
 Before starting, please install Java 8
 ```sh
-apt install openjdk-8-jre-headless openjdk-8-jdk \
+apt install openjdk-8-jre-headless openjdk-8-jdk -qy \
   && update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java \
   && update-alternatives --set javac /usr/lib/jvm/java-8-openjdk-amd64/bin/javac
 ```
