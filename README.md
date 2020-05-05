@@ -32,6 +32,7 @@ cd bld
 cmake ..                             \
   -DCMAKE_BUILD_TYPE=Debug           \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=On \
+  -DCAPI_GEN=${HOME}/workspace/capicxx-core-tools/org.genivi.commonapi.core.cli.product/target/products/org.genivi.commonapi.core.cli.product/linux/gtk/x86_64/commonapi-generator-linux-x86_64 \
 cmake --build .
 ```
 
