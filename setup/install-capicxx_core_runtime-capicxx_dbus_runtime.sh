@@ -5,6 +5,8 @@ set -e
 install_dir=/usr/local
 source_dir=${install_dir}/src
 
+apt install -qy libgtest-dev doxygen pkg-config libcairo2-dev libexpat1
+
 echo "Installing CommonAPI"
 capi_dir="${source_dir}/capicxx-core-runtime"
 git clone https://github.com/GENIVI/capicxx-core-runtime.git "${capi_dir}" \
@@ -22,7 +24,7 @@ git clone https://github.com/GENIVI/capicxx-dbus-runtime.git "${dbus_dir}"
 patch_files=$(echo ${dbus_dir}/src/dbus-patches/*.patch)
 tmp="$(mktemp -d)"
 
-apt remove dbus -qy
+apt remove -qy dbus
 wget -O "${tmp}/dbus-${VERSION}.tar.gz"                              \
   "http://dbus.freedesktop.org/releases/dbus/dbus-${VERSION}.tar.gz" \
   && tar -xzf "${tmp}/dbus-${VERSION}.tar.gz" -C "${source_dir}"     \
