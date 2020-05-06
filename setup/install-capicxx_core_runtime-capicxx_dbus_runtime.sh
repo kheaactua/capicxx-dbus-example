@@ -2,7 +2,7 @@
 
 declare install_dir=/usr/local
 declare source_dir=${install_dir}/src
-delcare dbus_install_dir=/opt/
+declare dbus_install_dir=/opt/
 
 if [[ $EUID -eq 0 ]]; then
   apt install -qy libgtest-dev doxygen pkg-config libcairo2-dev libexpat1
