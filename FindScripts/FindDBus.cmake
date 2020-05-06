@@ -1,13 +1,15 @@
 find_package(PkgConfig QUIET)
 if(PKG_CONFIG_FOUND)
-  pkg_check_modules(_dbus_hint QUIET libdbus)
+  pkg_check_modules(_dbus_hint QUIET dbus-1)
 endif()
 
 find_path(DBUS_INCLUDE_DIR
   NAMES
     dbus/dbus.h
   HINTS
+    ${_dbus_hint_INCLUDE_DIRS}
     /opt
+    /usr/local
   PATH_SUFFIXES
     include/dbus-1.0/
     include/
@@ -18,8 +20,10 @@ find_path(DBUS_ARCH_INCLUDE_DIR
   NAMES
     dbus/dbus-arch-deps.h
   HINTS
+    ${_dbus_hint_INCLUDE_DIRS}
     /opt/lib
-
+    /usr/local/lib
+    /usr/lib
   PATH_SUFFIXES
     dbus-1.0/include
     include/dbus-1.0/
@@ -30,8 +34,10 @@ find_library(DBUS_LIB
   NAMES
     dbus-1
   HINTS
+    ${_dbus_hint_LIBRARY_DIRS}
     /opt/lib
     /usr/local/lib
+    /usr/lib
 )
 
 # Normalise
