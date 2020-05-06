@@ -58,7 +58,9 @@ find_package_handle_standard_args(DBus
 )
 
 if(NOT TARGET DBus)
-  message(STATUS "Found DBus: ${DBUS_INCLUDE_DIRS}")
+  message(STATUS "Found DBus:
+   inc: ${DBUS_INCLUDE_DIRS}
+   lib: ${DBUS_LIB}")
   add_library(DBus INTERFACE IMPORTED)
   set_target_properties(DBus PROPERTIES
     INTERFACE_INCLUDE_DIRECTORIES "${DBUS_INCLUDE_DIRS}"
