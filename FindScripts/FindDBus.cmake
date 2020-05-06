@@ -1,14 +1,14 @@
 find_package(PkgConfig QUIET)
 if(PKG_CONFIG_FOUND)
-  pkg_check_modules(_dbus_hint QUIET libdbus)
+  pkg_check_modules(_dbus_hint QUIET dbus-1)
 endif()
 
 find_path(DBUS_INCLUDE_DIR
   NAMES
     dbus/dbus.h
   HINTS
-    /usr
-    $ENV{QNX_HOST}/usr/aarch64-buildroot-nto-qnx/sysroot/usr
+    ${_dbus_hint_INCLUDE_DIRS}
+    /opt
     /usr/local
   PATH_SUFFIXES
     include/dbus-1.0/
@@ -20,10 +20,10 @@ find_path(DBUS_ARCH_INCLUDE_DIR
   NAMES
     dbus/dbus-arch-deps.h
   HINTS
-    /usr/lib
-    $ENV{QNX_HOST}/usr/aarch64-buildroot-nto-qnx/sysroot/aarch64le/usr/lib
+    ${_dbus_hint_INCLUDE_DIRS}
+    /opt/lib
     /usr/local/lib
-
+    /usr/lib
   PATH_SUFFIXES
     dbus-1.0/include
     include/dbus-1.0/
@@ -34,9 +34,10 @@ find_library(DBUS_LIB
   NAMES
     dbus-1
   HINTS
-    /usr/lib
-    $ENV{QNX_HOST}/usr/aarch64-buildroot-nto-qnx/sysroot/aarch64le/usr/lib
+    ${_dbus_hint_LIBRARY_DIRS}
+    /opt/lib
     /usr/local/lib
+    /usr/lib
 )
 
 # Normalise
@@ -57,7 +58,9 @@ find_package_handle_standard_args(DBus
 )
 
 if(NOT TARGET DBus)
-  message(STATUS "Found DBus: ${DBUS_INCLUDE_DIRS}")
+  message(STATUS "Found DBus:
+   inc: ${DBUS_INCLUDE_DIRS}
+   lib: ${DBUS_LIB}")
   add_library(DBus INTERFACE IMPORTED)
   set_target_properties(DBus PROPERTIES
     INTERFACE_INCLUDE_DIRECTORIES "${DBUS_INCLUDE_DIRS}"

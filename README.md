@@ -24,9 +24,10 @@ Run the following install script to install
 - a patched DBus: installed to `/opt`
 - [capicxx-dbus-runtime](https://github.com/GENIVI/capicxx-dbus-runtime.git)
 
-Then, install
-[capicxx-core-tools](https://github.com/GENIVI/capicxx-core-tools) and
-[capicxx-dbus-tools](https://github.com/GENIVI/capicxx-dbus-tools) with maven.
+Then, with mavin install:
+- [capicxx-core-tools](https://github.com/GENIVI/capicxx-core-tools) and
+- [capicxx-dbus-tools](https://github.com/GENIVI/capicxx-dbus-tools) with maven.
+The commands below assume that you clone these repos into `${HOME}/workspace`
 
 # Build
 
@@ -41,6 +42,8 @@ cd bld
 cmake ..                             \
   -DCMAKE_BUILD_TYPE=Debug           \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=On \
+  -DCAPI_GEN=${HOME}/workspace/capicxx-core-tools/org.genivi.commonapi.core.cli.product/target/products/org.genivi.commonapi.core.cli.product/linux/gtk/x86_64/commonapi-generator-linux-x86_64 \
+  -DDBus_GEN=${HOME}/workspace/capicxx-dbus-tools/org.genivi.commonapi.dbus.cli.product/target/products/org.genivi.commonapi.dbus.cli.product/linux/gtk/x86_64/commonapi-dbus-generator-linux-x86_64
 cmake --build .
 ```
 

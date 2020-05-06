@@ -31,8 +31,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # Our custom find scripts
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/FindScripts")
 
-set(DBus_GEN "$ENV{WORKSPACE}/src/franca-dev/commonapi_dbus_generator/commonapi-dbus-generator-linux-x86_64" CACHE PATH "commonapi-dbus-generator-linux-x86_64 generator")
-set(CAPI_GEN "$ENV{WORKSPACE}/src/franca-dev/commonapi-generator/commonapi-generator-linux-x86_64" CACHE PATH "commonapi-generator-linux-x86_64 generator")
+set(DBus_GEN "$ENV{HOME}/workspace/capicxx-dbus-tools/org.genivi.commonapi.dbus.cli.product/target/products/org.genivi.commonapi.dbus.cli.product/linux/gtk/x86_64/commonapi-dbus-generator-linux-x86_64")
+set(CAPI_GEN "$ENV{HOME}/workspace/capicxx-core-tools/org.genivi.commonapi.core.cli.product/target/products/org.genivi.commonapi.core.cli.product/linux/gtk/x86_64/commonapi-generator-linux-x86_64")
 
 # Code generators
 add_executable(gen_capi IMPORTED)
