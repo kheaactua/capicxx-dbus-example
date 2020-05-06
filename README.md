@@ -19,7 +19,7 @@ export PKG_CONFIG_PATH=/opt/lib/pkgconfig
 export LD_LIBRARY_PATH=/opt/lib
 ```
 
-Run the following install script to install
+Run the following install script to install: `setup/install-capicxx_core_runtime-capicxx_dbus_runtime.sh`
 - [capicxx-core-runtime](https://github.com/GENIVI/capicxx-core-runtime.git)
 - a patched DBus: installed to `/opt`
 - [capicxx-dbus-runtime](https://github.com/GENIVI/capicxx-dbus-runtime.git)
