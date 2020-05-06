@@ -7,9 +7,7 @@ find_path(DBUS_INCLUDE_DIR
   NAMES
     dbus/dbus.h
   HINTS
-    /usr
-    $ENV{QNX_HOST}/usr/aarch64-buildroot-nto-qnx/sysroot/usr
-    /usr/local
+    /opt
   PATH_SUFFIXES
     include/dbus-1.0/
     include/
@@ -20,9 +18,7 @@ find_path(DBUS_ARCH_INCLUDE_DIR
   NAMES
     dbus/dbus-arch-deps.h
   HINTS
-    /usr/lib
-    $ENV{QNX_HOST}/usr/aarch64-buildroot-nto-qnx/sysroot/aarch64le/usr/lib
-    /usr/local/lib
+    /opt/lib
 
   PATH_SUFFIXES
     dbus-1.0/include
@@ -34,8 +30,7 @@ find_library(DBUS_LIB
   NAMES
     dbus-1
   HINTS
-    /usr/lib
-    $ENV{QNX_HOST}/usr/aarch64-buildroot-nto-qnx/sysroot/aarch64le/usr/lib
+    /opt/lib
     /usr/local/lib
 )
 
