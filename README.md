@@ -13,11 +13,20 @@ sudo apt install openjdk-8-jre-headless openjdk-8-jdk -qy \
   && sudo update-alternatives --set javac /usr/lib/jvm/java-8-openjdk-amd64/bin/javac
 ```
 
-Run this on a system that already has (see `setup/install-capicxx_core_runtime-capicxx_dbus_runtime.sh`)
-- capicxx-core-tools
-- patched dbus
+Add the following to your environment to properly use the patched DBus:
+```sh
+export PKG_CONFIG_PATH=/opt/lib/pkgconfig
+export LD_LIBRARY_PATH=/opt/lib
+```
 
-Then, install [capicxx-core-tools](https://github.com/GENIVI/capicxx-core-tools) and [capicxx-dbus-tools](https://github.com/GENIVI/capicxx-dbus-tools) with maven.
+Run the following install script to install
+- [capicxx-core-runtime](https://github.com/GENIVI/capicxx-core-runtime.git)
+- a patched DBus: installed to `/opt`
+- [capicxx-dbus-runtime](https://github.com/GENIVI/capicxx-dbus-runtime.git)
+
+Then, install
+[capicxx-core-tools](https://github.com/GENIVI/capicxx-core-tools) and
+[capicxx-dbus-tools](https://github.com/GENIVI/capicxx-dbus-tools) with maven.
 
 # Build
 
@@ -53,14 +62,15 @@ If you receive DBus errors such as
 ```
 dbus-daemon: /usr/local/lib/libdbus-1.so.3: version `LIBDBUS_PRIVATE_1.12.2' not found (required by dbus-daemon)
 ```
-it means that your DBus isn't installed properly.  This is likely a result of
-the install script above installing DBus over a previously installed version.
-While it now attempts to first uninstall DBus, if that didn't work, uninstall
-DBus with apt, run the DBus installer from the script above, and launch the
-service:
+it means that your system DBus is conflicting with the patched DBus.  Ensure you're using the patched dbus (check this with the `ldd` command), and ensure DBus is running:
 
 ```sh
 sudo dbus-daemon --system
 ```
+
+## Notes:
+- I suspect I should change the DBus version to match the system version, or
+  that I'm not installing it properly, or shouldn't force it as much as I am to
+  use the patched version.
 
 [modeline]: # ( vim: set fenc=utf-8 spell spl=en ts=2 sw=2 expandtab sts=0 ff=unix : )
